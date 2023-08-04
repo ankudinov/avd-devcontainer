@@ -48,6 +48,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
+          context: .devcontainer
           push: true
           build-args: |
             _AVD_VERSION=${{ env._AVD_VERSION }}
