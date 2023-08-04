@@ -59,7 +59,7 @@ jobs:
       - name: Delete old containers
         uses: actions/delete-package-versions@v4
         with:
-          package-name: avd-all-in-one-container/avd-all-in-one
+          package-name: avd-devcontainer/avd-devcontainer
           package-type: container
-          min-versions-to-keep: 60
+          min-versions-to-keep: 1
           token: ${{ secrets.GITHUB_TOKEN }}

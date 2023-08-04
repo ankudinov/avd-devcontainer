@@ -10,6 +10,7 @@ run: ## Run AVD container
 	docker run --rm -it \
 			--network host \
 			--pid="host" \
+			--entrypoint /bin/zsh \
 			-w $(CURRENT_DIR) \
 			-v $(CURRENT_DIR):$(CURRENT_DIR) \
 			-e AVD_GIT_USER="$(shell git config --get user.name)" \
