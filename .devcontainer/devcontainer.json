@@ -7,7 +7,7 @@
         "args": {
             "_AVD_VERSION": "4.1.0",
             "_YQ_VERSION": "v4.34.1",
-            "_YQ_BINARY": "yq_linux_amd64",
+            "_YQ_BINARY": "yq_linux_amd64"
         }
     },
     "features": {
