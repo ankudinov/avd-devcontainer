@@ -36,14 +36,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       # generate docker tags and labels
-      - name: Generate Docker tags and labels
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          images: ghcr.io/ankudinov/avd-devcontainer/avd-devcontainer
-          tags: |
-            type=raw,value=latest
-            type=raw,value={{ env._AVD_VERSION }}
+      # - name: Generate Docker tags and labels
+      #   id: meta
+      #   uses: docker/metadata-action@v4
+      #   with:
+      #     images: ghcr.io/ankudinov/avd-devcontainer/avd-devcontainer
+      #     tags: |
+      #       type=raw,value=latest
+      #       type=raw,value={{ env._AVD_VERSION }}
       # build and push the image
       - name: Build and push
         uses: docker/build-push-action@v4
@@ -52,8 +52,9 @@ jobs:
           push: true
           build-args: |
             _AVD_VERSION=${{ env._AVD_VERSION }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          # tags: ${{ steps.meta.outputs.tags }}
+          tags: latest:${{ env._AVD_VERSION }}
+          # labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/arm64/v8,linux/amd64
       # delete old images
       - name: Delete old containers
