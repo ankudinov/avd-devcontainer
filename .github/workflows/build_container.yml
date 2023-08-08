@@ -39,7 +39,7 @@ jobs:
           images: ghcr.io/ankudinov/avd-devcontainer/avd-devcontainer
           tags: |
             type=raw,value=latest
-            type=raw,value=avd-test-devcontainer
+            type=raw,value=avd_test_devcontainer
       # build and push the image
       - name: Build and push
         uses: docker/build-push-action@v4
