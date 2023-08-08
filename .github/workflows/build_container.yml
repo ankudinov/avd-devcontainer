@@ -49,7 +49,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/arm64/v8,linux/amd64
-          provenance: false
+          # provenance: false
       # delete old images
       - name: Delete old containers
         uses: actions/delete-package-versions@v4
