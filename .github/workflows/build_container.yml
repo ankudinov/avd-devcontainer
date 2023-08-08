@@ -3,6 +3,10 @@ name: build avd devcontainer for docker pull
 
 env:
   _AVD_VERSION: "4.1.0"
+  # to avoid unknown/unknown image build
+  # check following thread for the details:
+  #   https://github.com/orgs/community/discussions/45969
+  BUILDX_NO_DEFAULT_ATTESTATIONS: 1
 
 on:
   push:
@@ -39,17 +43,19 @@ jobs:
           images: ghcr.io/ankudinov/avd-devcontainer/avd-devcontainer
           tags: |
             type=raw,value=latest
-            type=raw,value=avd_test_devcontainer
+            type=raw,value={{ env._AVD_VERSION }}
       # build and push the image
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
           context: .devcontainer
           push: true
+          build-args: |
+            _AVD_VERSION=${{ env._AVD_VERSION }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/arm64/v8,linux/amd64
-          # provenance: false
+          provenance: false
       # delete old images
       - name: Delete old containers
         uses: actions/delete-package-versions@v4
