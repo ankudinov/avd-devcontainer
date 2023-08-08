@@ -1,41 +1,38 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
-	"name": "avd-devcontainer",
-	"build": {
-        "dockerfile": "Dockerfile",
-        "args": {
-            "_AVD_VERSION": "4.1.0"
-        }
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": "."
     },
     "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2.2.0": {
-            "version": "latest"
+        "ghcr.io/devcontainers/features/common-utils:2":{
+            "installZsh": "true",
+            "username": "vscode",
+            "userUid": "1000",
+            "userGid": "1000",
+            "upgradePackages": "true"
         },
-        // add sshd to support gh cli codespace cp
-        "ghcr.io/devcontainers/features/sshd:1": {
-            "version": "latest"
+        // "ghcr.io/devcontainers/features/python:1": "none",
+        "ghcr.io/devcontainers/features/git:1": {
+            "version": "latest",
+            "ppa": "false"
         }
     },
-    // set minimum host requirements
-    "hostRequirements": {
-        "cpus": 4,
-        "memory": "8gb",
-        "storage": "32gb"
-    },
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                // spell checker
-                "streetsidesoftware.code-spell-checker",
-                // markdown
-                "yzhang.markdown-all-in-one",
-                "DavidAnson.vscode-markdownlint",
-                // various tools
-                "tuxtina.json2yaml",
-                "vscode-icons-team.vscode-icons",
-                "mutantdino.resourcemonitor"
-            ]
-        }
-    }
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/local/bin/python"
+			}
+		}
+	},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "pip3 install --user -r requirements.txt",
+
+	// Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode"
 }
