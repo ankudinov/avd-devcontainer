@@ -1,27 +1,23 @@
-FROM mcr.microsoft.com/devcontainers/python:0-3.9-bullseye
+# [Choice] Python version (use -bookworm or -bullseye variants on local arm64/Apple Silicon): 3, 3.11, 3.10, 3.9, 3.8, 3-bookworm, 3.11-bookworm, 3.10-bookworm, 3.9-bookworm, 3.8-bookworm, 3-bullseye, 3.11-bullseye, 3.10-bullseye, 3.9-bullseye, 3.8-bullseye, 3-buster, 3.11-buster, 3.10-buster, 3.9-buster, 3.8-buster
+ARG VARIANT=3.11-slim-bullseye
+FROM python:${VARIANT}
 
-# change this for every release
-ARG _AVD_VERSION
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    # Remove imagemagick due to https://security-tracker.debian.org/tracker/CVE-2019-10131
+    && apt-get purge -y imagemagick imagemagick-6-common 
 
-# install some basic tools inside the container
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-    sshpass \
-    curl \
-    iputils-ping \
-    htop \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
-    && apt-get clean
+# Temporary: Upgrade python packages due to https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-40897
+# They are installed by the base image (python) which does not have the patch.
+RUN python3 -m pip install --upgrade setuptools
 
-# switch user to vscode otherwise Ansible will be installed as root
-USER vscode
-ENV PATH=$PATH:/home/vscode/.local/bin
-ENV ANSIBLE_CONFIG="/workspaces/avd-extended-workshop/avd_inventory/ansible.cfg"
-# install Ansible AVD collection
-RUN pip3 install "ansible-core>=2.13.1,<2.14.0" \
-    && ansible-galaxy collection install arista.avd:==${_AVD_VERSION} \
-    && pip3 install -r /home/vscode/.ansible/collections/ansible_collections/arista/avd/requirements.txt
+# [Optional] If your pip requirements rarely change, uncomment this section to add them to the image.
+# COPY requirements.txt /tmp/pip-tmp/
+# RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
+#    && rm -rf /tmp/pip-tmp
 
-# install yamllint
-RUN pip3 install --user yamllint
+# [Optional] Uncomment this section to install additional OS packages.
+# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+#     && apt-get -y install --no-install-recommends <your-package-list-here>
+
+# [Optional] Uncomment this line to install global node packages.
+# RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
