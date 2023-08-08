@@ -49,7 +49,6 @@ jobs:
         with:
           context: .devcontainer
           push: true
-          build-args: |
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/arm64/v8,linux/amd64
