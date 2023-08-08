@@ -2,6 +2,14 @@
 ARG VARIANT=3.11-slim-bullseye
 FROM python:${VARIANT}
 
+# labels to be changed for every release
+LABEL maintainer="Arista Ansible Team <ansible@arista.com>"
+LABEL com.example.version="dev"
+LABEL vendor1="Arista"
+LABEL com.example.release-date="23.11.23"
+LABEL com.example.version.is-production="False"
+LABEL org.opencontainers.image.description="avd-test-devcontainer"
+
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     # Remove imagemagick due to https://security-tracker.debian.org/tracker/CVE-2019-10131
     && apt-get purge -y imagemagick imagemagick-6-common 
