@@ -8,6 +8,7 @@ help: ## Display help message
 .PHONY: run
 run: ## Run AVD container
 	docker run --rm -it \
+			--user vscode \
 			--network host \
 			--pid="host" \
 			--entrypoint /bin/zsh \
