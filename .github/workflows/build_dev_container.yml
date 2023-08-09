@@ -7,10 +7,8 @@ env:
 
 on:
   workflow_run:
-    workflows: 
-      - build avd base container
-    types:
-      - completed
+    workflows: [ "build avd base container" ]
+    types: [ completed ]
 
 jobs:
   build_dev_image:
