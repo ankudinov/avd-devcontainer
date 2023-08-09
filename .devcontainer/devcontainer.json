@@ -1,0 +1,4 @@
+{
+    // the default devcontainer for the repository
+    "image": "ghcr.io/ankudinov/avd-devcontainer/avd-base:v4.1.0"
+}
