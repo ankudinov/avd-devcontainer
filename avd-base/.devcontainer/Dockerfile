@@ -7,12 +7,7 @@ FROM python:${VARIANT}
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     make \
-    wget \
-    curl \
-    less \
     git \
-    sudo \
-    git-extras \
     && rm -rf /var/lib/apt/lists/* \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
