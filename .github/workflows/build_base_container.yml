@@ -18,6 +18,9 @@ jobs:
       - name: Starting container build
         run: echo "Starting container build. Be patient. 🐢"
 
+      - name: Checkout code ✅
+        uses: actions/checkout@v3
+
       - name: Check if avd-base needs to be built 🤔
         uses: dorny/paths-filter@v2
         id: filter-avd-base
@@ -25,9 +28,6 @@ jobs:
           filters: |
             workflows:
               - 'avd-base/.devcontainer/**'
-
-      - name: Checkout code ✅
-        uses: actions/checkout@v3
 
       - name: setup QEMU for multi-arch builds 🏗️
         if: steps.filter-avd-base.outputs.workflows == 'true'
