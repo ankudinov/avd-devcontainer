@@ -3,6 +3,7 @@ name: build avd devcontainer for docker pull
 
 env:
   _AVD_VERSION: "4.1.0"
+  BUILDX_NO_DEFAULT_ATTESTATIONS: 1
 
 on:
   push:
