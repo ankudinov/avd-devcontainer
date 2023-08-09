@@ -12,7 +12,7 @@ on:
 jobs:
   build_base_image:
     runs-on: ubuntu-22.04
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
 
       - name: Starting container build
@@ -41,6 +41,6 @@ jobs:
         with:
           subFolder: avd-base
           imageName: ghcr.io/ankudinov/avd-devcontainer/avd-base
-          # imageTag: latest, v${{ env._AVD_VERSION }}
+          imageTag: latest,v${{ env._AVD_VERSION }}
           platform: linux/arm64,linux/amd64
           push: always
