@@ -3,6 +3,20 @@ ARG VARIANT=3.11-slim-bullseye
 FROM python:${VARIANT}
 # FROM mcr.microsoft.com/devcontainers/base:ubuntu
 
+# install essential tools
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    make \
+    wget \
+    curl \
+    less \
+    git \
+    sudo \
+    git-extras \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
+    && apt-get clean
+
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
