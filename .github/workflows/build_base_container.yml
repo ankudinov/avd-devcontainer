@@ -41,6 +41,6 @@ jobs:
         with:
           subFolder: avd-base
           imageName: ghcr.io/ankudinov/avd-devcontainer/avd-base
-          imageTag: latest, v${{ env._AVD_VERSION }}
-          platform: linux/arm64/v8,linux/amd64
+          # imageTag: latest, v${{ env._AVD_VERSION }}
+          platform: linux/arm64,linux/amd64
           push: always
