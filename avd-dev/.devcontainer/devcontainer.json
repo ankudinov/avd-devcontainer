@@ -1,0 +1,43 @@
+{
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": "."
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2":{
+            // do not install zsh to the base to check size diff
+            "installZsh": "true",
+            "installOhMyZsh": "true",
+            "username": "vscode",
+            "userUid": "1000",
+            "userGid": "1000",
+            // do not update packages to reduce build time
+            "upgradePackages": "false"
+        },
+        "ghcr.io/devcontainers/features/docker-in-docker:2.2.0": {
+            "version": "latest"
+        },
+        // add sshd to support gh cli codespace cp
+        "ghcr.io/devcontainers/features/sshd:1": {
+            "version": "latest"
+        }
+    },
+	// Configure tool-specific properties.
+	// "customizations": {
+	// 	// Configure properties specific to VS Code.
+	// 	"vscode": {
+	// 		// Set *default* container specific settings.json values on container create.
+	// 		"settings": {
+	// 			"python.defaultInterpreterPath": "/usr/local/bin/python"
+	// 		}
+	// 	}
+	// },
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "pip3 install --user -r requirements.txt",
+
+	// Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode"
+}
