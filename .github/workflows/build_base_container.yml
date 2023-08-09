@@ -29,6 +29,7 @@ jobs:
           filters: |
             workflows:
               - 'avd-base/.devcontainer/**'
+              - '.github/workflows/**'
 
       - name: setup QEMU for multi-arch builds 🏗️
         if: steps.filter-avd-base.outputs.workflows == 'true'
