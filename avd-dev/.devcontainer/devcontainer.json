@@ -14,7 +14,7 @@
             // do not update packages to reduce build time
             "upgradePackages": "false"
         },
-        "ghcr.io/devcontainers/features/docker-in-docker:2.2.0": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2.3.0": {
             "version": "latest"
         },
         // add sshd to support gh cli codespace cp
