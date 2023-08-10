@@ -12,6 +12,8 @@ RUN apt-get update \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
     && apt-get clean
 
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
+# add entrypoint script
+COPY ./entrypoint.sh /bin/entrypoint.sh
+RUN sudo chmod +x /bin/entrypoint.sh
+# use ENTRYPOINT instead of CMD to ensure that entryscript is always executed
+ENTRYPOINT [ "/bin/entrypoint.sh" ]

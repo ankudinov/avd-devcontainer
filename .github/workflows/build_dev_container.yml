@@ -53,7 +53,7 @@ jobs:
         if: steps.filter-avd-dev.outputs.workflows == 'true'
         uses: devcontainers/ci@v0.3
         with:
-          subFolder: avd-containers/base
+          subFolder: avd-containers/dev
           imageName: ghcr.io/ankudinov/avd-devcontainer/dev
           imageTag: latest,v${{ env._AVD_VERSION }}
           platform: linux/arm64,linux/amd64
