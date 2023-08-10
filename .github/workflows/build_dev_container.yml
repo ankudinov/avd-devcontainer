@@ -5,10 +5,14 @@ env:
   _AVD_VERSION: "4.1.0"
   BUILDX_NO_DEFAULT_ATTESTATIONS: 1
 
+# on:
+#   workflow_run:
+#     workflows: [ build-base ]
+#     types: [ completed ]
 on:
-  workflow_run:
-    workflows: [ build-base ]
-    types: [ completed ]
+  push:
+    branches:
+      - master
 
 jobs:
   build_dev_image:
