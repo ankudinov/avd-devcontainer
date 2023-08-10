@@ -1,5 +1,5 @@
 ---
-name: build avd base container
+name: build-base
 
 env:
   _AVD_VERSION: "4.1.0"
@@ -28,7 +28,7 @@ jobs:
         with:
           filters: |
             workflows:
-              - 'avd-base/.devcontainer/**'
+              - 'avd-containers/base/.devcontainer/**'
               - '.github/workflows/**'
 
       - name: setup QEMU for multi-arch builds 🏗️
@@ -53,8 +53,8 @@ jobs:
         if: steps.filter-avd-base.outputs.workflows == 'true'
         uses: devcontainers/ci@v0.3
         with:
-          subFolder: avd-base
-          imageName: ghcr.io/ankudinov/avd-devcontainer/base_image
+          subFolder: avd-container/base
+          imageName: ghcr.io/ankudinov/avd-devcontainer/base
           imageTag: latest,v${{ env._AVD_VERSION }}
           platform: linux/arm64,linux/amd64
           push: always

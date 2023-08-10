@@ -1,4 +1,4 @@
-FROM ghcr.io/ankudinov/avd-devcontainer/base_image:v4.1.0
+FROM ghcr.io/ankudinov/avd-devcontainer/base:v4.1.0
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
