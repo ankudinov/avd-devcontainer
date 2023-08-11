@@ -21,8 +21,10 @@ jobs:
     strategy:
       matrix:
         container: [base]
-        platform: ["linux/arm64/v8,linux/amd64"]
-        tags: ["latest,rev0.1"]
+        include:
+          - container: base
+            platform: linux/arm64/v8,linux/amd64
+            tags: latest,rev0.1
 
     with:
       container_name: ${{ matrix.container }}
@@ -35,12 +37,15 @@ jobs:
 
     strategy:
       matrix:
-        container: [ci, dev]
+        container: [ci, dev, universal]
         include:
           - container: ci
             platform: linux/arm64/v8,linux/amd64
             tags: latest,rev0.1
           - container: dev
+            platform: linux/arm64/v8,linux/amd64
+            tags: latest,rev0.1
+          - container: universal
             platform: linux/arm64/v8,linux/amd64
             tags: latest,rev0.1
 
