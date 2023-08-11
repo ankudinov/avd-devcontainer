@@ -1,5 +1,5 @@
 ---
-name: build-base
+name: build-all-containers
 
 env:
   BUILDX_NO_DEFAULT_ATTESTATIONS: 1
@@ -10,13 +10,34 @@ on:
       - master
 
 jobs:
-  build_all_containers:
+
+  build_base_container:
+    # base container is not supposed to be used directly
+    # it only contains essential tools and custom entrypoint
+    # and is used as base for all other containers
+
+    uses: ./.github/workflows/container_build_template.yml
 
     strategy:
       matrix:
-        container: [base, dev ]
+        container: [base]
+        platform: linux/arm64/v8,linux/amd64
+        tags: latest,rev0.1
+
+    with:
+      container_name: ${{ matrix.container }}
+      container_tags: ${{ matrix.tags }}
+      platform: ${{ matrix.platform }}
+
+  build_all_containers:
+
+    needs: [build_base_container]
+
+    strategy:
+      matrix:
+        container: [ci, dev]
         include:
-          - container: base
+          - container: ci
             platform: linux/arm64/v8,linux/amd64
             tags: latest,rev0.1
           - container: dev
