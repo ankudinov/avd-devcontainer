@@ -21,9 +21,9 @@ jobs:
     strategy:
       matrix:
         container: [base]
+        platform: [ linux/arm64/v8, linux/amd64 ]
         include:
           - container: base
-            platform: [ linux/arm64/v8, linux/amd64 ]
             tags: latest,rev0.1
 
     with:
@@ -38,15 +38,13 @@ jobs:
     strategy:
       matrix:
         container: [ci, dev, universal]
+        platform: [ linux/arm64/v8, linux/amd64 ]
         include:
           - container: ci
-            platform: [ linux/arm64/v8, linux/amd64 ]
             tags: latest,rev0.1
           - container: dev
-            platform: [ linux/arm64/v8, linux/amd64 ]
             tags: latest,rev0.1
           - container: universal
-            platform: [ linux/arm64/v8, linux/amd64 ]
             tags: latest,rev0.1
 
     uses: ./.github/workflows/container_build_template.yml
