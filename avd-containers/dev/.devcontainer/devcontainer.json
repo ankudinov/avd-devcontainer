@@ -1,8 +1,5 @@
 {
-    "build": {
-        "dockerfile": "./Dockerfile",
-        "context": "."
-    },
+    "image": "ghcr.io/ankudinov/avd-devcontainer/base:rev0.1",
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2":{
             // do not install zsh to the base to check size diff
