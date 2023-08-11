@@ -23,7 +23,7 @@ jobs:
         container: [base]
         include:
           - container: base
-            platform: linux/arm64/v8,linux/amd64
+            platform: [ linux/arm64/v8, linux/amd64 ]
             tags: latest,rev0.1
 
     with:
@@ -40,13 +40,13 @@ jobs:
         container: [ci, dev, universal]
         include:
           - container: ci
-            platform: linux/arm64/v8,linux/amd64
+            platform: [ linux/arm64/v8, linux/amd64 ]
             tags: latest,rev0.1
           - container: dev
-            platform: linux/arm64/v8,linux/amd64
+            platform: [ linux/arm64/v8, linux/amd64 ]
             tags: latest,rev0.1
           - container: universal
-            platform: linux/arm64/v8,linux/amd64
+            platform: [ linux/arm64/v8, linux/amd64 ]
             tags: latest,rev0.1
 
     uses: ./.github/workflows/container_build_template.yml
