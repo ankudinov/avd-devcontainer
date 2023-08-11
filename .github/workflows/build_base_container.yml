@@ -37,17 +37,34 @@ jobs:
 
     strategy:
       matrix:
-        container: [ci, dev, universal]
+        container: [ci, dev]
         platform: [ linux/arm64/v8, linux/amd64 ]
         include:
           - container: ci
             tags: latest,rev0.1
           - container: dev
             tags: latest,rev0.1
-          - container: universal
-            tags: latest,rev0.1
 
     uses: ./.github/workflows/container_build_template.yml
+
+    with:
+      container_name: ${{ matrix.container }}
+      container_tags: ${{ matrix.tags }}
+      platform: ${{ matrix.platform }}
+
+  build_universal_container:
+
+    needs: [build_all_containers]
+
+    uses: ./.github/workflows/container_build_template.yml
+
+    strategy:
+      matrix:
+        container: [universal]
+        platform: [ linux/arm64/v8, linux/amd64 ]
+        include:
+          - container: universal
+            tags: latest,rev0.1
 
     with:
       container_name: ${{ matrix.container }}
