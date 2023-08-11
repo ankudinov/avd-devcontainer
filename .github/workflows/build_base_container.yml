@@ -2,7 +2,7 @@
 name: build-base
 
 env:
-  REVISION: "0.1"
+  TAGS: "latest,rev0.1"
   BUILDX_NO_DEFAULT_ATTESTATIONS: 1
 
 on:
@@ -26,5 +26,5 @@ jobs:
 
     with:
       container_name: ${{ matrix.container }}
-      container_tags: latest,rev${{ env.REVISION }}
+      container_tags: ${{ env.TAGS }}
       platform: ${{ matrix.platform }}
