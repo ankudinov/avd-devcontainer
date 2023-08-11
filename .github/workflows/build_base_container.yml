@@ -2,7 +2,6 @@
 name: build-base
 
 env:
-  TAGS: "latest,rev0.1"
   BUILDX_NO_DEFAULT_ATTESTATIONS: 1
 
 on:
@@ -19,12 +18,14 @@ jobs:
         include:
           - container: base
             platform: linux/arm64/v8,linux/amd64
+            tags: latest,rev0.1
           - container: dev
             platform: linux/arm64/v8,linux/amd64
+            tags: latest,rev0.1
 
     uses: ./.github/workflows/container_build_template.yml
 
     with:
       container_name: ${{ matrix.container }}
-      container_tags: ${{ env.TAGS }}
+      container_tags: ${{ matrix.tags }}
       platform: ${{ matrix.platform }}
