@@ -20,8 +20,10 @@ jobs:
         container: [base, dev ]
         include:
           - container: base
+            filter_id: filter-avd-base
             platform: linux/arm64/v8,linux/amd64
           - container: dev
+            filter_id: filter-avd-base
             platform: linux/arm64/v8,linux/amd64
 
     steps:
@@ -34,7 +36,7 @@ jobs:
 
       - name: Check if avd-base needs to be built 🤔
         uses: dorny/paths-filter@v2
-        id: filter-avd-${{ matrix.container }}
+        id: ${{ matrix.filter_id }}
         with:
           filters: |
             workflows:
@@ -42,17 +44,17 @@ jobs:
               - '.github/workflows/**'
 
       - name: setup QEMU for multi-arch builds 🏗️
-        if: steps.filter-avd-${{ matrix.container }}.outputs.workflows == 'true'
+        if: steps.${{ matrix.filter_id }}.outputs.workflows == 'true'
         uses: docker/setup-qemu-action@v2
         with:
           platforms: ${{ matrix.platform }}
 
       - name: setup Docker buildX for multi-arch builds 🏗️
-        if: steps.filter-avd-${{ matrix.container }}.outputs.workflows == 'true'
+        if: steps.${{ matrix.filter_id }}.outputs.workflows == 'true'
         uses: docker/setup-buildx-action@v2
 
       - name: Login to Docker Hub 🗝️
-        if: steps.filter-avd-${{ matrix.container }}.outputs.workflows == 'true'
+        if: steps.${{ matrix.filter_id }}.outputs.workflows == 'true'
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
@@ -60,7 +62,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pre-build dev container image 🔨
-        if: steps.filter-avd-${{ matrix.container }}.outputs.workflows == 'true'
+        if: steps.${{ matrix.filter_id }}.outputs.workflows == 'true'
         uses: devcontainers/ci@v0.3
         with:
           subFolder: avd-containers/${{ matrix.container }}
