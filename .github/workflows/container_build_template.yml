@@ -3,6 +3,9 @@
 
 name: container-build-template
 
+env:
+  BUILDX_NO_DEFAULT_ATTESTATIONS: 1
+
 on:
   workflow_call:
     inputs:
@@ -19,14 +22,13 @@ on:
         required: true
         type: string
 
-env:
-  BUILDX_NO_DEFAULT_ATTESTATIONS: 1
-  FROM_IMAGE: ${{ inputs.from_image }}
-  FROM_VARIANT: ${{ inputs.from_variant }}
-
 jobs:
   build_image:
     runs-on: ubuntu-22.04
+
+    env:
+      FROM_IMAGE: ${{ inputs.from_image }}
+      FROM_VARIANT: ${{ inputs.from_variant }}
 
     steps:
 
