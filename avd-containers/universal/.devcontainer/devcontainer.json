@@ -5,7 +5,9 @@
 	"build": {
         "dockerfile": "Dockerfile",
         "args": {
-            "_AVD_VERSION": "4.1.0"
+            "FROM_IMAGE": "${localEnv:FROM_IMAGE}",
+            "FROM_VARIANT": "${localEnv:FROM_VARIANT}",
+            "AVD_VERSION": "${localEnv:AVD_VERSION}"
         }
     },
     "features": {
@@ -41,5 +43,6 @@
                 "mutantdino.resourcemonitor"
             ]
         }
-    }
+    },
+    "postCreateCommand": "./.devcontainer/postCreateCommand.sh"
 }

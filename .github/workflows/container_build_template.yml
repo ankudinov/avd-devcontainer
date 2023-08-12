@@ -29,6 +29,10 @@ on:
       from_variant:
         required: true
         type: string
+      # avd_version, e.g. 4.1.0
+      avd_version:
+        required: false
+        type: string
 
 jobs:
   build_image:
@@ -80,6 +84,7 @@ jobs:
         env:
           FROM_IMAGE: ${{ inputs.from_image }}
           FROM_VARIANT: ${{ inputs.from_variant }}
+          AVD_VERSION: ${{ inputs.avd_version }}
         with:
           subFolder: avd-containers/${{ inputs.container_name }}
           imageName: ghcr.io/ankudinov/avd-devcontainer/${{ inputs.container_name }}
