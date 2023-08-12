@@ -23,7 +23,7 @@ jobs:
         container: [base]
         include:
           - container: base
-            tags: latest,rev0.1
+            tags: latest,3.11-slim-bullseye-rev0.1
             platform: linux/arm64/v8,linux/amd64
 
     with:
@@ -35,23 +35,15 @@ jobs:
 
     needs: [build_base_container]
 
-    # strategy:
-    #   matrix:
-    #     container: [ci, dev]
-    #     include:
-    #       - container: ci
-    #         tags: latest,rev0.1
-    #         platform: linux/arm64/v8,linux/amd64
-    #       - container: dev
-    #         tags: latest,rev0.1
-    #         platform: linux/arm64/v8,linux/amd64
-
     strategy:
       matrix:
-        container: [dev]
+        container: [ci, dev]
         include:
+          - container: ci
+            tags: latest,3.11-slim-bullseye-rev0.1
+            platform: linux/arm64/v8,linux/amd64
           - container: dev
-            tags: latest,rev0.1
+            tags: latest,3.11-slim-bullseye-rev0.1
             platform: linux/arm64/v8,linux/amd64
 
     uses: ./.github/workflows/container_build_template.yml
@@ -72,7 +64,7 @@ jobs:
         container: [universal]
         include:
           - container: universal
-            tags: latest,rev0.1
+            tags: latest,3.11-slim-bullseye-avd4.1.0-rev0.1
             platform: linux/arm64/v8,linux/amd64
 
     with:

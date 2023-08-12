@@ -1,4 +1,4 @@
-FROM ghcr.io/ankudinov/avd-devcontainer/dev:rev0.1
+FROM ghcr.io/ankudinov/avd-devcontainer/dev:3.11-slim-bullseye-rev0.1
 
 ARG _AVD_VERSION
 
