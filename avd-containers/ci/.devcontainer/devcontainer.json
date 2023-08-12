@@ -1,7 +1,7 @@
 {
     // "image": "ghcr.io/ankudinov/avd-devcontainer/base:3.11-slim-bullseye-rev0.1",
     "build": {
-        "dockerfile": "./Dockerfile",
+        "dockerfile": "Dockerfile",
         "context": "."
     },
     

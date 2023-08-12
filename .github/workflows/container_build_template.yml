@@ -46,11 +46,7 @@ jobs:
       - name: Copy shared files 📁
         if: steps.devcontainer-filter.outputs.workflows == 'true'
         run: |
-          pwd
           cp -r container-shared/slim-bullseye avd-containers/${{ inputs.container_name }}/.devcontainer/
-          cd avd-containers/${{ inputs.container_name }}/.devcontainer/
-          ls -la
-          pwd
       
       - name: setup QEMU for multi-arch builds 🏗️
         if: steps.devcontainer-filter.outputs.workflows == 'true'
