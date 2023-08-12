@@ -2,7 +2,11 @@
     // "image": "ghcr.io/ankudinov/avd-devcontainer/base:3.11-slim-bullseye-rev0.1",
     "build": {
         "dockerfile": "Dockerfile",
-        "context": "."
+        "context": ".",
+        "args": {
+            "FROM_IMAGE": "${localEnv:FROM_NAME}",
+            "FROM_VARIANT": "${localEnv:FROM_TAG}"
+        }
     },
     
     "features": {

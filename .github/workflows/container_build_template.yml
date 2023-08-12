@@ -5,6 +5,8 @@ name: container-build-template
 
 env:
   BUILDX_NO_DEFAULT_ATTESTATIONS: 1
+  FROM_IMAGE: python
+  FROM_TAG: 3.11-slim-bullseye
 
 on:
   workflow_call:
