@@ -65,5 +65,5 @@ jobs:
           subFolder: avd-containers/${{ inputs.container_name }}
           imageName: ghcr.io/ankudinov/avd-devcontainer/${{ inputs.container_name }}
           imageTag: ${{ inputs.container_tags }}
-          platform: ${{ inputs.container_platform }}
+          platform: ${{ inputs.platform }}
           push: always
