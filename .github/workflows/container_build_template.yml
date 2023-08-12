@@ -75,6 +75,6 @@ jobs:
           imageTag: ${{ inputs.container_tags }}
           platform: ${{ inputs.platform }}
           push: always
-          env:
-            FROM_IMAGE: ${{ inputs.from_image }}
-            FROM_VARIANT: ${{ inputs.from_variant }}
+          env: |
+            FROM_IMAGE=${{ inputs.from_image }}
+            FROM_VARIANT=${{ inputs.from_variant }}
