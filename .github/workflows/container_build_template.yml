@@ -3,11 +3,6 @@
 
 name: container-build-template
 
-env:
-  BUILDX_NO_DEFAULT_ATTESTATIONS: 1
-  FROM_IMAGE: python
-  FROM_VARIANT: 3.11-slim-bullseye
-
 on:
   workflow_call:
     inputs:
@@ -23,6 +18,11 @@ on:
       platform:
         required: true
         type: string
+
+env:
+  BUILDX_NO_DEFAULT_ATTESTATIONS: 1
+  FROM_IMAGE: ${{ inputs.from_image }}
+  FROM_VARIANT: ${{ inputs.from_variant }}
 
 jobs:
   build_image:
