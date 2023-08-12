@@ -35,13 +35,21 @@ jobs:
 
     needs: [build_base_container]
 
+    # strategy:
+    #   matrix:
+    #     container: [ci, dev]
+    #     include:
+    #       - container: ci
+    #         tags: latest,rev0.1
+    #         platform: linux/arm64/v8,linux/amd64
+    #       - container: dev
+    #         tags: latest,rev0.1
+    #         platform: linux/arm64/v8,linux/amd64
+
     strategy:
       matrix:
-        container: [ci, dev]
+        container: [dev]
         include:
-          - container: ci
-            tags: latest,rev0.1
-            platform: linux/arm64/v8,linux/amd64
           - container: dev
             tags: latest,rev0.1
             platform: linux/arm64/v8,linux/amd64
