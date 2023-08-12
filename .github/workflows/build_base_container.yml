@@ -24,7 +24,7 @@ jobs:
         include:
           - container: base
             tags: latest,rev0.1
-            platform: linux/arm64,linux/amd64
+            platform: linux/arm64/v8,linux/amd64
 
     with:
       container_name: ${{ matrix.container }}
@@ -41,10 +41,10 @@ jobs:
         include:
           - container: ci
             tags: latest,rev0.1
-            platform: linux/arm64,linux/amd64
+            platform: linux/arm64/v8,linux/amd64
           - container: dev
             tags: latest,rev0.1
-            platform: linux/arm64,linux/amd64
+            platform: linux/arm64/v8,linux/amd64
 
     uses: ./.github/workflows/container_build_template.yml
 
@@ -65,7 +65,7 @@ jobs:
         include:
           - container: universal
             tags: latest,rev0.1
-            platform: linux/arm64,linux/amd64
+            platform: linux/arm64/v8,linux/amd64
 
     with:
       container_name: ${{ matrix.container }}
