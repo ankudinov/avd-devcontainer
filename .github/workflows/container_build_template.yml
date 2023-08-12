@@ -27,7 +27,7 @@ on:
         type: string
       # from_variant, e.g. 3.11-slim-bullseye
       from_variant:
-        required: false
+        required: true
         type: string
 
 jobs:
