@@ -21,6 +21,14 @@ on:
       platform:
         required: true
         type: string
+      # from_image, e.g. python, alpine, etc.
+      from_image:
+        required: true
+        type: string
+      # from_variant, e.g. 3.11-slim-bullseye
+      from_variant:
+        required: false
+        type: string
 
 jobs:
   build_image:
@@ -69,12 +77,12 @@ jobs:
       - name: Pre-build dev container image 🔨
         if: steps.devcontainer-filter.outputs.workflows == 'true'
         uses: devcontainers/ci@v0.3
+        env:
+          FROM_IMAGE: ${{ inputs.from_image }}
+          FROM_VARIANT: ${{ inputs.from_variant }}
         with:
           subFolder: avd-containers/${{ inputs.container_name }}
           imageName: ghcr.io/ankudinov/avd-devcontainer/${{ inputs.container_name }}
           imageTag: ${{ inputs.container_tags }}
           platform: ${{ inputs.platform }}
           push: always
-          env: |
-            FROM_IMAGE=${{ inputs.from_image }}
-            FROM_VARIANT=${{ inputs.from_variant }}
