@@ -1,7 +1,7 @@
 {
     "build": {
-        "dockerfile": "../shared/slim-bullseye/Dockerfile",
-        "context": "../shared/slim-bullseye/"
+        "dockerfile": "./Dockerfile",
+        "context": "."
     },
 
     "features": {
