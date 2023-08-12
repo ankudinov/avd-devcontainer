@@ -1,5 +1,10 @@
 {
-    "image": "ghcr.io/ankudinov/avd-devcontainer/base:3.11-slim-bullseye-rev0.1",
+    // "image": "ghcr.io/ankudinov/avd-devcontainer/base:3.11-slim-bullseye-rev0.1",
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": "."
+    },
+    
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2":{
             // do not install zsh to the base to check size diff
