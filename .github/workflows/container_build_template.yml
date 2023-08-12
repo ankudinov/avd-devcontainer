@@ -3,6 +3,9 @@
 
 name: container-build-template
 
+env:
+  BUILDX_NO_DEFAULT_ATTESTATIONS: 1
+
 on:
   workflow_call:
     inputs:
