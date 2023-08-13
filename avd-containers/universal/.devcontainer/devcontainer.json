@@ -12,17 +12,6 @@
         }
     },
     "features": {
-        "ghcr.io/devcontainers/features/common-utils:2":{
-            // do not install zsh to the base to check size diff
-            "installZsh": true,
-            "installOhMyZsh": true,
-            "configureZshAsDefaultShell": true,
-            "username": "vscode",
-            "userUid": "1000",
-            "userGid": "1000",
-            // do not update packages to reduce build time
-            "upgradePackages": "false"
-        },
         "ghcr.io/devcontainers/features/docker-in-docker:2.3.0": {
             "version": "latest"
         },

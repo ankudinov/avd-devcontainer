@@ -11,8 +11,9 @@
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2":{
             // do not install zsh to the base to check size diff
-            "installZsh": false,
-            "installOhMyZsh": false,
+            "installZsh": true,
+            "installOhMyZsh": true,
+            "configureZshAsDefaultShell": true,
             "username": "vscode",
             "userUid": "1000",
             "userGid": "1000",

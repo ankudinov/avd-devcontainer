@@ -55,13 +55,13 @@ jobs:
               - 'avd-containers/${{ inputs.container_name }}/.devcontainer/**'
               - '.github/workflows/**'
 
-      - name: Copy shared files 📁
-        if: steps.devcontainer-filter.outputs.workflows == 'true'
-        run: |
-          cp -r container-shared/slim-bullseye/* avd-containers/${{ inputs.container_name }}/.devcontainer/
-          if [ ${{ inputs.avd_version }} ]; then
-            cat avd-containers/${{ inputs.container_name }}/.devcontainer/Dockerfile.plus >> avd-containers/${{ inputs.container_name }}/.devcontainer/Dockerfile
-          fi
+      # - name: Copy shared files 📁
+      #   if: steps.devcontainer-filter.outputs.workflows == 'true'
+      #   run: |
+      #     cp -r container-shared/slim-bullseye/* avd-containers/${{ inputs.container_name }}/.devcontainer/
+      #     if [ ${{ inputs.avd_version }} ]; then
+      #       cat avd-containers/${{ inputs.container_name }}/.devcontainer/Dockerfile.plus >> avd-containers/${{ inputs.container_name }}/.devcontainer/Dockerfile
+      #     fi
       
       - name: setup QEMU for multi-arch builds 🏗️
         if: steps.devcontainer-filter.outputs.workflows == 'true'
