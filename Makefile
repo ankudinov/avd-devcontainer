@@ -1,5 +1,5 @@
 CURRENT_DIR := $(shell pwd)
-AVD_CONTAINER_IMAGE := ghcr.io/ankudinov/avd-devcontainer/dev:v4.1.0
+AVD_CONTAINER_IMAGE := ghcr.io/ankudinov/avd-devcontainer/universal:latest
 
 .PHONY: help
 help: ## Display help message
