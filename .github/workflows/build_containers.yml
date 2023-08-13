@@ -39,6 +39,7 @@ jobs:
       platform: ${{ matrix.platform }}
       from_image: ${{ matrix.from_image }}
       from_variant: ${{ matrix.from_variant }}
+      avd_version: ${{ matrix.avd_version }}
 
   # build_all_containers:
 
