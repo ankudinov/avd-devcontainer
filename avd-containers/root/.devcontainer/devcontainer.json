@@ -1,0 +1,10 @@
+{
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": ".",
+        "args": {
+            "FROM_IMAGE": "${localEnv:FROM_IMAGE}",
+            "FROM_VARIANT": "${localEnv:FROM_VARIANT}"
+        }
+    }
+}
