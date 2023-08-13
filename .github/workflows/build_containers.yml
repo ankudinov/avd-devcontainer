@@ -11,34 +11,7 @@ on:
 
 jobs:
 
-  build_root:
-    # root container is not supposed to be used directly
-    # it only contains essential tools and custom entrypoint
-    # and is used as base for all other containers
-
-    uses: ./.github/workflows/container_build_template.yml
-
-    strategy:
-      matrix:
-        container: [root]
-        from_image: [python]
-        include:
-          - container: root
-            tags: latest,3.11-slim-bullseye-rev0.1
-            platform: linux/arm64/v8,linux/amd64
-          - from_image: python
-            from_variant: 3.11-slim-bullseye
-
-    with:
-      container_name: ${{ matrix.container }}
-      container_tags: ${{ matrix.tags }}
-      platform: ${{ matrix.platform }}
-      from_image: ${{ matrix.from_image }}
-      from_variant: ${{ matrix.from_variant }}
-
   build_all_containers:
-
-    needs: [build_root]
 
     uses: ./.github/workflows/container_build_template.yml
 

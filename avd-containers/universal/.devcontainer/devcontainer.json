@@ -55,6 +55,5 @@
                 "mutantdino.resourcemonitor"
             ]
         }
-    },
-    "postCreateCommand": "./.devcontainer/postCreateCommand.sh"
+    }
 }

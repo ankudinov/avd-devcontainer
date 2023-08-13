@@ -1,5 +1,3 @@
-FROM ghcr.io/ankudinov/avd-devcontainer/root:3.11-slim-bullseye-rev0.1
-
 ARG _AVD_VERSION
 
 # switch user to vscode otherwise Ansible will be installed as root
