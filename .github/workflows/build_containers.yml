@@ -38,6 +38,8 @@ jobs:
 
   build_all_containers:
 
+    needs: [build_root]
+
     uses: ./.github/workflows/container_build_template.yml
 
     strategy:
