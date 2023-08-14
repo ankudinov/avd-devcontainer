@@ -18,13 +18,13 @@ jobs:
     strategy:
       matrix:
         container: [base]
+        username: [vscode]
         include:
           - container: base
             tags: latest,3.11-slim-bullseye-rev0.1
             platform: linux/arm64/v8,linux/amd64
             from_image: python
             from_variant: 3.11-slim-bullseye
-            username: vscode
             user_id: 1000
             group_id: 1000
 
