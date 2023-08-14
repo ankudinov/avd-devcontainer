@@ -21,7 +21,8 @@ jobs:
         username: [vscode]
         include:
           - container: base
-            tags: latest,3.11-slim-bullseye-rev0.1
+            # tags: latest,3.11-slim-bullseye-rev0.1
+            revision: 0.1
             platform: linux/arm64/v8,linux/amd64
             from_image: python
             from_variant: 3.11-slim-bullseye
@@ -30,7 +31,8 @@ jobs:
 
     with:
       container_name: ${{ matrix.container }}
-      container_tags: ${{ matrix.tags }}
+      # container_tags: ${{ matrix.tags }}
+      container_tags: latest,${{ matrix.from_variant }}-rev${{ matrix.revision }}
       platform: ${{ matrix.platform }}
       from_image: ${{ matrix.from_image }}
       from_variant: ${{ matrix.from_variant }}
