@@ -49,7 +49,7 @@ jobs:
             from_variant: 3.11-slim-bullseye-rev0.1
           - container: universal
             tags: latest,3.11-slim-bullseye-avd4.1.0-rev0.1
-            avd_version: 4.1.0
+            avd_version: "4.1.0"
             platform: linux/arm64/v8,linux/amd64
             from_image: ghcr.io/ankudinov/avd-devcontainer/base
             from_variant: 3.11-slim-bullseye-rev0.1
