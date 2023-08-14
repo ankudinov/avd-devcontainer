@@ -36,6 +36,15 @@ on:
       avd_pip_install:
         required: false
         type: string
+      username:
+        required: false
+        type: string
+      user_id:
+        required: false
+        type: string
+      group_id:
+        required: false
+        type: string
 
 jobs:
   build_image:
@@ -92,6 +101,9 @@ jobs:
           FROM_VARIANT: ${{ inputs.from_variant }}
           AVD_VERSION: ${{ inputs.avd_version }}
           AVD_PIP_INSTALL: ${{ inputs.avd_pip_install }}
+          USERNAME: ${{ inputs.username }}
+          UID: ${{ inputs.user_id }}
+          GID: ${{ inputs.group_id }}
         with:
           subFolder: avd-containers/${{ inputs.container_name }}
           imageName: ghcr.io/ankudinov/avd-devcontainer/${{ inputs.container_name }}

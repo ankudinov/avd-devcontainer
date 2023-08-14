@@ -24,6 +24,9 @@ jobs:
             platform: linux/arm64/v8,linux/amd64
             from_image: python
             from_variant: 3.11-slim-bullseye
+            username: vscode
+            user_id: 1000
+            group_id: 1000
 
     with:
       container_name: ${{ matrix.container }}
@@ -31,6 +34,9 @@ jobs:
       platform: ${{ matrix.platform }}
       from_image: ${{ matrix.from_image }}
       from_variant: ${{ matrix.from_variant }}
+      username: ${{ matrix.username }}
+      user_id: ${{ matrix.user_id }}
+      group_id: ${{ matrix.group_id }}
 
   build_all_containers:
 
