@@ -8,7 +8,8 @@
         "args": {
             "FROM_IMAGE": "${localEnv:FROM_IMAGE}",
             "FROM_VARIANT": "${localEnv:FROM_VARIANT}",
-            "AVD_VERSION": "${localEnv:AVD_VERSION}"
+            "AVD_VERSION": "${localEnv:AVD_VERSION}",
+            "AVD_PIP_INSTALL": "${localEnv:AVD_PIP_INSTALL}"
         }
     },
     "features": {
