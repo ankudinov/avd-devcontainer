@@ -4,6 +4,8 @@
 name: container-build-template
 
 env:
+  # BUILDX_NO_DEFAULT_ATTESTATIONS must be set to build only arm64 and amd64 images
+  # the devcontainers/ci@v0.3 build will fail if this env variable is not set
   BUILDX_NO_DEFAULT_ATTESTATIONS: 1
 
 on:
