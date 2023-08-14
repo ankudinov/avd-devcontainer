@@ -53,6 +53,7 @@ jobs:
             platform: linux/arm64/v8,linux/amd64
             from_image: ghcr.io/ankudinov/avd-devcontainer/base
             from_variant: 3.11-slim-bullseye-rev0.1
+            avd_pip_install: "ansible-core>=2.13.1,<2.14.0"
 
     with:
       container_name: ${{ matrix.container }}
@@ -61,6 +62,7 @@ jobs:
       from_image: ${{ matrix.from_image }}
       from_variant: ${{ matrix.from_variant }}
       avd_version: ${{ matrix.avd_version }}
+      avd_pip_install: ${{ matrix.avd_pip_install }}
 
   # build_all_containers:
 

@@ -33,6 +33,9 @@ on:
       avd_version:
         required: false
         type: string
+      avd_pip_install:
+        required: false
+        type: string
 
 jobs:
   build_image:
@@ -88,6 +91,7 @@ jobs:
           FROM_IMAGE: ${{ inputs.from_image }}
           FROM_VARIANT: ${{ inputs.from_variant }}
           AVD_VERSION: ${{ inputs.avd_version }}
+          AVD_PIP_INSTALL: ${{ inputs.avd_pip_install }}
         with:
           subFolder: avd-containers/${{ inputs.container_name }}
           imageName: ghcr.io/ankudinov/avd-devcontainer/${{ inputs.container_name }}

@@ -4,11 +4,12 @@ ARG FROM_VARIANT
 FROM ${FROM_IMAGE}:${FROM_VARIANT}
 
 ARG AVD_VERSION
+ARG AVD_PIP_INSTALL
 
 # switch user to vscode otherwise Ansible will be installed as root
 USER vscode
 ENV PATH=$PATH:/home/vscode/.local/bin
 # install Ansible AVD collection
-RUN pip3 install "ansible-core>=2.13.1,<2.14.0" \
+RUN pip3 install "${AVD_PIP_INSTALL}" \
     && ansible-galaxy collection install arista.avd:==${AVD_VERSION} \
     && pip3 install -r /home/vscode/.ansible/collections/ansible_collections/arista/avd/requirements.txt
