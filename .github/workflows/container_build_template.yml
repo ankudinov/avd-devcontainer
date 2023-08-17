@@ -80,6 +80,7 @@ jobs:
             echo "image_tags=latest,python${{ inputs.python_version }}" >> $GITHUB_OUTPUT
           else
             echo "image_tags=latest,python${{ inputs.python_version }}-avd${{ inputs.avd_version }}" >> $GITHUB_OUTPUT
+          fi
 
       # - name: Copy shared files 📁
       #   if: steps.devcontainer-filter.outputs.workflows == 'true'
