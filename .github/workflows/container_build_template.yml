@@ -48,6 +48,9 @@ on:
       group_id:
         required: false
         type: string
+      python_version:
+        required: true
+        type: string
 
 jobs:
   build_image:
@@ -69,6 +72,14 @@ jobs:
             workflows:
               - 'avd-containers/${{ inputs.container_name }}/.devcontainer/**'
               - '.github/workflows/**'
+
+      - name: Build image tags
+        id: build-tags
+        run:
+          if [[ -z ${{ inputs.avd_version }} ]]; then
+            echo "image_tags=latest,python${{ inputs.python_version }}" >> $GITHUB_OUTPUT
+          else
+            echo "image_tags=latest,python${{ inputs.python_version }}-avd${{ inputs.avd_version }}" >> $GITHUB_OUTPUT
 
       # - name: Copy shared files 📁
       #   if: steps.devcontainer-filter.outputs.workflows == 'true'
@@ -110,6 +121,6 @@ jobs:
         with:
           subFolder: avd-containers/${{ inputs.container_name }}
           imageName: ghcr.io/ankudinov/avd-devcontainer/${{ inputs.container_name }}
-          imageTag: ${{ inputs.container_tags }}
+          imageTag: ${{ steps.build-tags.outputs.image_tags }}
           platform: ${{ inputs.platform }}
           push: always

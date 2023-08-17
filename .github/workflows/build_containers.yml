@@ -25,6 +25,7 @@ jobs:
             revision: 0.1
             from_image: python
             from_variant: 3.11-slim-bullseye
+            python_version: 3.11
             user_id: 1000
             group_id: 1000
 
@@ -53,11 +54,13 @@ jobs:
             tags: latest,3.11-slim-bullseye-rev0.1
             from_image: ghcr.io/ankudinov/avd-devcontainer/base
             from_variant: 3.11-slim-bullseye-rev0.1
+            python_version: 3.11
           - container: universal
             tags: latest,3.11-slim-bullseye-avd4.1.0-rev0.1
             avd_version: "4.1.0"
             from_image: ghcr.io/ankudinov/avd-devcontainer/base
             from_variant: 3.11-slim-bullseye-rev0.1
+            python_version: 3.11
             avd_pip_install: "ansible-core>=2.13.1,<2.14.0"
 
     with:
