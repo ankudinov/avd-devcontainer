@@ -76,7 +76,7 @@ jobs:
       - name: Build image tags
         id: build-tags
         run:
-          if [[ -z ${{ inputs.avd_version }} ]]; then
+          if [ -z ${{ inputs.avd_version }} ]; then
             echo "image_tags=latest,python${{ inputs.python_version }}" >> $GITHUB_OUTPUT
           else
             echo "image_tags=latest,python${{ inputs.python_version }}-avd${{ inputs.avd_version }}" >> $GITHUB_OUTPUT
