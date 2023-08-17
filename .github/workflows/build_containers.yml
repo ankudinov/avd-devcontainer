@@ -38,6 +38,7 @@ jobs:
       username: ${{ matrix.username }}
       user_id: ${{ matrix.user_id }}
       group_id: ${{ matrix.group_id }}
+      python_version: ${{ matrix.python_version }}
 
   build_all_containers:
 
@@ -71,6 +72,7 @@ jobs:
       avd_version: ${{ matrix.avd_version }}
       avd_pip_install: ${{ matrix.avd_pip_install }}
       username: ${{ matrix.username }}
+      python_version: ${{ matrix.python_version }}
 
   # build_all_containers:
 
