@@ -1,9 +1,6 @@
 ---
 name: build-all-containers
 
-env:
-  BUILDX_NO_DEFAULT_ATTESTATIONS: 1
-
 on:
   push:
     branches:
@@ -18,9 +15,7 @@ jobs:
     strategy:
       matrix:
         container: [base]
-        include:
-          - container: base
-            python_version: 3.11
+        python_version: ["3.11"]
 
     with:
       container_name: ${{ matrix.container }}
@@ -35,12 +30,10 @@ jobs:
     strategy:
       matrix:
         container: [dev, universal]
+        python_version: ["3.11"]
         include:
-          - container: dev
-            python_version: 3.11
           - container: universal
             avd_version: "4.1.0"
-            python_version: 3.11
             avd_pip_install: "ansible-core>=2.13.1,<2.14.0"
 
     with:
