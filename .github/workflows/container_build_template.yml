@@ -82,7 +82,7 @@ jobs:
               - 'avd-containers/${{ inputs.container_name }}/.devcontainer/**'
               - '.github/workflows/**'
 
-      - name: Build image tags
+      - name: Build image tags 🏷️
         id: build-tags
         run: |
           if [ -z "${{ inputs.container_tags }}" ]; then
@@ -95,7 +95,7 @@ jobs:
             echo "image_tags=${{ inputs.container_tags }}" >> $GITHUB_OUTPUT
           fi
 
-      - name: Generate from_image and from_variant parameters
+      - name: Generate from_image and from_variant parameters 🐍
         id: generate-from-parameters
         # Logic:
         # 1) only python-slim images are supported at the moment
@@ -117,7 +117,7 @@ jobs:
             exit 1
           fi
 
-      - name: find ansible-core version
+      - name: find ansible-core version 🔥
         id: find-ansible-core-version
         run: |
           ANSIBLE_CORE_VERSION=$(cat requirements-dev.txt| grep ansible-core)
