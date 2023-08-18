@@ -21,16 +21,20 @@ on:
         required: false
         type: string
       # platform, e.g. linux/amd64, linux/arm64/v8
+      # default is just fine if there is no intention to release a special build
       platform:
         required: false
         type: string
         default: linux/arm64/v8,linux/amd64
       # from_image, e.g. python, alpine, etc.
+      # currently we only support python-slim, this is a future knob
       from_image:
         required: false
         type: string
         default: python
       # from_variant, e.g. 3.11-slim-bullseye
+      # this is auto-generated for python-slim based builds
+      # only specify for special builds
       from_variant:
         required: false
         type: string
