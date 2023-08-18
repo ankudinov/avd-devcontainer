@@ -55,8 +55,6 @@ jobs:
     with:
       container_name: ${{ matrix.container }}
       container_tags: ${{ matrix.tags }}
-      from_image: ${{ matrix.from_image }}
-      from_variant: ${{ matrix.from_variant }}
       avd_version: ${{ matrix.avd_version }}
       avd_pip_install: ${{ matrix.avd_pip_install }}
       username: ${{ matrix.username }}
