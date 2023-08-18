@@ -34,10 +34,8 @@ jobs:
         include:
           - container: universal
             avd_version: "4.1.0"
-            avd_pip_install: "ansible-core>=2.13.1,<2.14.0"
 
     with:
       container_name: ${{ matrix.container }}
       avd_version: ${{ matrix.avd_version }}
-      avd_pip_install: ${{ matrix.avd_pip_install }}
       python_version: ${{ matrix.python_version }}
