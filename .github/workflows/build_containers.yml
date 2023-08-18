@@ -20,14 +20,11 @@ jobs:
         container: [base]
         include:
           - container: base
-            # tags: latest,3.11-slim-bullseye-rev0.1
-            revision: 0.1
             python_version: 3.11
 
     with:
       container_name: ${{ matrix.container }}
-      # container_tags: ${{ matrix.tags }}
-      container_tags: latest,${{ matrix.from_variant }}-rev${{ matrix.revision }}
+      container_tags: latest,${{ matrix.from_variant }}-rev0.1
       username: ${{ matrix.username }}
       user_id: ${{ matrix.user_id }}
       group_id: ${{ matrix.group_id }}
