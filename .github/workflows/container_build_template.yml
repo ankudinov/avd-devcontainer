@@ -42,12 +42,15 @@ on:
       username:
         required: false
         type: string
+        default: avd
       user_id:
         required: false
         type: string
+        default: 1000
       group_id:
         required: false
         type: string
+        default: 1000
       python_version:
         required: true
         type: string
