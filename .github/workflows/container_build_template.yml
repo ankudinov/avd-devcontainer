@@ -26,11 +26,12 @@ on:
         default: linux/arm64/v8,linux/amd64
       # from_image, e.g. python, alpine, etc.
       from_image:
-        required: true
+        required: false
         type: string
+        default: python
       # from_variant, e.g. 3.11-slim-bullseye
       from_variant:
-        required: true
+        required: false
         type: string
       # avd_version, e.g. 4.1.0
       avd_version:
@@ -85,6 +86,28 @@ jobs:
             echo "image_tags=latest,python${{ inputs.python_version }}-avd${{ inputs.avd_version }}" >> $GITHUB_OUTPUT
           fi
 
+      - name: Generate from_image and from_variant parameters
+        id: generate-from-parameters
+        # Logic:
+        # 1) only python-slim images are supported at the moment
+        # 2) base image must be built first from official python image
+        # 3) all other images will be built from the base image
+        # 4) from_image and from_variant can be passed transparently to the build step
+        #    but that is not implemented currently
+        run: |
+          if [ "${{ inputs.from_image }}" == "python" ]; then
+            if [ "${{ inputs.container_name }}" == "base" ]; then
+              echo "from_image=${{ inputs.from_image }}" >> $GITHUB_OUTPUT
+              echo "from_variant=${{ inputs.python_version }}-slim-bullseye" >> $GITHUB_OUTPUT
+            else
+              echo "from_image=ghcr.io/ankudinov/avd-devcontainer/base" >> $GITHUB_OUTPUT
+              echo "from_variant=python${{ inputs.python_version }}" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "Only python-slim images are supported at the moment. Exiting."
+            exit 1
+          fi
+
       # - name: Copy shared files 📁
       #   if: steps.devcontainer-filter.outputs.workflows == 'true'
       #   run: |
@@ -115,8 +138,8 @@ jobs:
         if: steps.devcontainer-filter.outputs.workflows == 'true'
         uses: devcontainers/ci@v0.3
         env:
-          FROM_IMAGE: ${{ inputs.from_image }}
-          FROM_VARIANT: ${{ inputs.from_variant }}
+          FROM_IMAGE: ${{ steps.generate-from-parameters.outputs.from_image }}
+          FROM_VARIANT: ${{ steps.generate-from-parameters.outputs.from_variant }}
           AVD_VERSION: ${{ inputs.avd_version }}
           AVD_PIP_INSTALL: ${{ inputs.avd_pip_install }}
           USERNAME: ${{ inputs.username }}
