@@ -9,7 +9,7 @@ ARG USERNAME
 
 # switch user to vscode otherwise Ansible will be installed as root
 USER ${USERNAME}
-ENV PATH=$PATH:/home/vscode/.local/bin
+ENV PATH=$PATH:/home/${USERNAME}/.local/bin
 # install Ansible AVD collection
 RUN pip3 install "${AVD_PIP_INSTALL}" \
     && ansible-galaxy collection install arista.avd:==${AVD_VERSION} \
