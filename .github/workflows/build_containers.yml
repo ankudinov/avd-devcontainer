@@ -16,10 +16,14 @@ jobs:
       matrix:
         container: [base]
         python_version: ["3.9", "3.10", "3.11"]
+      include:
+        - python_version: "3.11"
+          container_tags: latest
 
     with:
       container_name: ${{ matrix.container }}
       python_version: ${{ matrix.python_version }}
+      container_tags: ${{ matrix.container_tags }}
 
   build_all_containers:
 
@@ -34,8 +38,11 @@ jobs:
         include:
           - container: universal
             avd_version: "4.1.0"
+          - python_version: "3.11"
+            container_tags: latest
 
     with:
       container_name: ${{ matrix.container }}
       avd_version: ${{ matrix.avd_version }}
       python_version: ${{ matrix.python_version }}
+      container_tags: ${{ matrix.container_tags }}

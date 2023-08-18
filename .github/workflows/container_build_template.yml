@@ -82,17 +82,29 @@ jobs:
               - 'avd-containers/${{ inputs.container_name }}/.devcontainer/**'
               - '.github/workflows/**'
 
+      # build image tags based on Python version and AVD version (if defined)
+      # if container_tags is not defined, then image_tags will be auto-generated
+      # if container_tags is latest, it will be added to auto-generated image_tags
+      # if container_tags is defined and not latest, it will be used as is
       - name: Build image tags 🏷️
         id: build-tags
         run: |
           if [ -z "${{ inputs.container_tags }}" ]; then
             if [ -z "${{ inputs.avd_version }}" ]; then
-              echo "image_tags=latest,python${{ inputs.python_version }}" >> $GITHUB_OUTPUT
+              echo "image_tags=python${{ inputs.python_version }}" >> $GITHUB_OUTPUT
             else
-              echo "image_tags=latest,python${{ inputs.python_version }}-avd${{ inputs.avd_version }}" >> $GITHUB_OUTPUT
+              echo "image_tags=python${{ inputs.python_version }}-avd${{ inputs.avd_version }}" >> $GITHUB_OUTPUT
             fi
           else
-            echo "image_tags=${{ inputs.container_tags }}" >> $GITHUB_OUTPUT
+            if [ "${{ inputs.container_tags }}" == "latest" ]; then
+              if [ -z "${{ inputs.avd_version }}" ]; then
+                echo "image_tags=latest,python${{ inputs.python_version }}" >> $GITHUB_OUTPUT
+              else
+                echo "image_tags=latest,python${{ inputs.python_version }}-avd${{ inputs.avd_version }}" >> $GITHUB_OUTPUT
+              fi
+            else
+              echo "image_tags=${{ inputs.container_tags }}" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Generate from_image and from_variant parameters 🐍
