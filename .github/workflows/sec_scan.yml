@@ -4,8 +4,6 @@ name: security scan
 on: [workflow_dispatch]
 
 jobs:
-
-jobs:
   security_scan:
     runs-on: ubuntu-latest
     steps:
