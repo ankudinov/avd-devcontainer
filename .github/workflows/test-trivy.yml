@@ -44,7 +44,7 @@ jobs:
       - name: Show vulnerability table in job summary
         if: ${{ !cancelled() && steps.scan.outcome == 'success' }}
         run: |
-          trivy convert --format table --severity HIGH,CRITICAL --output trivy.txt trivy.json
+          trivy convert --format table --severity HIGH,CRITICAL,MEDIUM --output trivy.txt trivy.json
           {
             echo '### Fixable HIGH/CRITICAL vulnerabilities'
             echo '```text'
